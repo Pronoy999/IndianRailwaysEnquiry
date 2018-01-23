@@ -1,7 +1,9 @@
-package com.pronoymukherjee.indianrailwaysenquiry;
+package com.pronoymukherjee.indianrailwaysenquiry.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.pronoymukherjee.indianrailwaysenquiry.R;
 
 public class TrainStatusActivity extends AppCompatActivity {
 
@@ -9,5 +11,6 @@ public class TrainStatusActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_status);
+
     }
 }
