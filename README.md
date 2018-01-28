@@ -1,7 +1,7 @@
 # IndianRailwaysEnquiry
 This is an android app to get detials about trains.
 
-#LICENSE
+# LICENSE
 
 Copyright 2018 Pronoy Mukherjee
 
