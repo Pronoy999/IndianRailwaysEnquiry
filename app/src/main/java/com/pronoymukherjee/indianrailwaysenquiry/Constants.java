@@ -18,4 +18,8 @@ public class Constants {
     static String TRAIN_FARE_URL=
             "https://api.railwayapi.com/v2/fare/train/<train number>/source/<stn code>/dest/<stn code>/age/<age>/pref/<class code>/quota/<quota code>/date/<dd-mm-yyyy>/apikey/xnlo6zq3yj/";
     static String STATION_NAME_CODE="https://api.railwayapi.com/v2/name-to-code/station/<stn name>/apikey/xnlo6zq3yj/";
+    static final String RESPONSE_CODE="response_code";
+    static final String TRAIN_NAME="name";
+    static final String TRAIN="train";
+    static final String TRAIN_POSITION="position";
 }
