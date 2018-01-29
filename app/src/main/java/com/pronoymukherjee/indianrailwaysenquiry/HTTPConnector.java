@@ -16,23 +16,18 @@ import org.json.JSONObject;
 
 public class HTTPConnector {
     private String TAG=HTTPConnector.class.getSimpleName();
-    public static String queryURL;
+    private   String queryURL;
     private JSONObject jsonResponse;
     private Context context;
-
-    public static void setQueryURL(String queryURL) {
-        HTTPConnector.queryURL = queryURL;
+    public HTTPConnector(Context context,String queryURL){
+        this.context=context;
+        this.queryURL=queryURL;
     }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    public JSONObject getJsonResponse() {
-        makeQuery();
+    public JSONObject getJsonResponse(){
+        makequery();
         return jsonResponse;
     }
-    private void makeQuery(){
+    private void makequery(){
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, queryURL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

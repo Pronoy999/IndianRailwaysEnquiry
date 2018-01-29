@@ -1,5 +1,8 @@
 package com.pronoymukherjee.indianrailwaysenquiry;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * This is the class to keep all the constants.
  */
@@ -22,4 +25,20 @@ public class Constants {
     static final String TRAIN_NAME="name";
     static final String TRAIN="train";
     static final String TRAIN_POSITION="position";
+
+    static Map<Integer,String> responseCodeDesc=new HashMap<>();
+    /**
+     * This is the method to fill the hashmap to store all the response code.
+     */
+    public static void fillresponseCodeDesc(){
+        responseCodeDesc.put(200,"Success");
+        responseCodeDesc.put(210,"Train doesn't run on the date queried");
+        responseCodeDesc.put(211,"Train doesn't have journey class queried");
+        responseCodeDesc.put(220,"Flushed PNR");
+        responseCodeDesc.put(221,"Invalid PNR");
+        responseCodeDesc.put(230,"Date chosen for the query is not valid for chosen parameters");
+        responseCodeDesc.put(404,"No Data Available");
+        responseCodeDesc.put(405,"Request couldn't go through");
+        responseCodeDesc.put(502,"Invalid Arguments");
+    }
 }
