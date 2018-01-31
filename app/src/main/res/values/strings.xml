@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">IndianRailwaysEnquiry</string>
-    <string name="pnrHint">Enter the PNR Number.</string>
+    <string name="pnrHint">Enter the PNR Number</string>
     <string name="pnrShow">PNR Details</string>
+    <string name="pnrHeading">PNR Details</string>
+    <string name="bookingStatus">Booking Status:</string>
+    <string name="currentStatus">Current Status:</string>
+    <string name="getStatus">Get Status</string>
 </resources>
