@@ -9,38 +9,136 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/pnrDetails">
+        android:orientation="horizontal">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pnrShow"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/pnrHeading"
             android:textAlignment="center"
+            android:textColor="@color/blue"
             android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
-        <LinearLayout
+            android:textSize="27sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/pnrNumber"
-                tools:text="PNR Number"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/dateOfJourney"
-                tools:text="Date-of-Journey"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
-        </LinearLayout>
-        <LinearLayout
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:id="@+id/pnrNumberShow"
+            tools:text="PNR Number"/>
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-        </LinearLayout>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:id="@+id/dateOfJourneyPnr"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            tools:text="Date of Journey"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/fromStationPnr"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="From Station"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:id="@+id/toStationPnr"
+            tools:text="To Station"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:id="@+id/boardingPointPnr"
+            tools:text="Boarding point"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:id="@+id/reservedUptoPnr"
+            tools:text="Reserved upto"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="@string/bookingStatus"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="@string/currentStatus"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/passengerList"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/pnrNumberInput"
+            android:hint="@string/pnrHint"
+            android:inputType="number"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center">
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/enterPNR"
+            android:text="@string/getStatus"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/cutom_shape"/>
     </LinearLayout>
 </LinearLayout>
