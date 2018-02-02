@@ -6,4 +6,7 @@
     <string name="bookingStatus">Booking Status:</string>
     <string name="currentStatus">Current Status:</string>
     <string name="getStatus">Get Status</string>
+    <string name="trainSchedule">Train Schedule</string>
+    <string name="trainSearch">Enter train name or number</string>
+    <string name="gettrainNameNo">Get Schedule</string>
 </resources>
