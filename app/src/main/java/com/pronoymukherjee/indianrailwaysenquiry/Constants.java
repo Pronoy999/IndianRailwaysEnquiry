@@ -25,6 +25,12 @@ public class Constants {
     static final String TRAIN_NAME="name";
     static final String TRAIN="train";
     static final String TRAIN_POSITION="position";
+   public static final String TRAIN_ROUTE="route";
+    static final String TRAIN_DAYS="days";
+    static final String STATION_ARRIVAL="scharr";
+    static final String STATION_DEPARTURE="schdep";
+    static final String STATION_Name="station";
+
 
     static Map<Integer,String> responseCodeDesc=new HashMap<>();
     /**
