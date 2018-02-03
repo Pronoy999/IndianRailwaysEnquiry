@@ -9,4 +9,6 @@
     <string name="trainSchedule">Train Schedule</string>
     <string name="trainSearch">Enter train name or number</string>
     <string name="gettrainNameNo">Get Schedule</string>
+    <string name="emptyView">No data to display.</string>
+
 </resources>
