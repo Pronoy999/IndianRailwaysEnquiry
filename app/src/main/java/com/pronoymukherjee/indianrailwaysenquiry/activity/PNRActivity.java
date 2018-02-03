@@ -3,6 +3,7 @@ package com.pronoymukherjee.indianrailwaysenquiry.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -13,7 +14,11 @@ import com.pronoymukherjee.indianrailwaysenquiry.Constants;
 import com.pronoymukherjee.indianrailwaysenquiry.HTTPConnector;
 import com.pronoymukherjee.indianrailwaysenquiry.JsonParser;
 import com.pronoymukherjee.indianrailwaysenquiry.Messages;
+import com.pronoymukherjee.indianrailwaysenquiry.PnrAdapter;
+import com.pronoymukherjee.indianrailwaysenquiry.PnrData;
 import com.pronoymukherjee.indianrailwaysenquiry.R;
+
+import java.util.ArrayList;
 
 public class PNRActivity extends AppCompatActivity {
     String TAG=PNRActivity.class.getSimpleName();
@@ -55,7 +60,24 @@ public class PNRActivity extends AppCompatActivity {
         emptyView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         JsonParser parser=new JsonParser(httpConnector.getJsonResponse());
-        //TODO(1):Add the other methods of parser.
-        //TODO(2): Set the Progress bar to GONE.
+        progressBar.setVisibility(View.GONE);
+        pnrNumberShow.setText(parser.getPnrNumber());
+        dateOfJounrey.setText(parser.getDateofJourneyPnr());
+        fromStation.setText(parser.getFromStation());
+        toStation.setText(parser.getToStation());
+        boardingPoint.setText(parser.getBoardingPoint());
+        reservedUpto.setText(parser.getReservedUpto());
+        String isChartPrepared=parser.getChartStatus()?"Yes":"No";
+        String status[][]=parser.getPNRStatus();
+        String classCode=parser.getJourneyClassCode();
+        ArrayList<PnrData> pnrStatus=new ArrayList<>();
+        int totalPassenger=parser.getNumberofPassengers();
+        for(int i=0;i<totalPassenger;i++){
+            PnrData pnrData=new PnrData(status[i][0],status[i][1],isChartPrepared,classCode);
+            pnrStatus.add(pnrData);
+        }
+        PnrAdapter adapter=new PnrAdapter(PNRActivity.this,pnrStatus);
+        listView.setAdapter(adapter);
+        listView.setVisibility(View.VISIBLE);
     }
 }

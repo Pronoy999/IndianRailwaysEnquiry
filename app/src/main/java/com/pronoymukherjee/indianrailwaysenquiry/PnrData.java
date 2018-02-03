@@ -5,10 +5,12 @@ package com.pronoymukherjee.indianrailwaysenquiry;
  */
 
 public class PnrData {
-    String currentStatus,bookingStatus;
-    public PnrData(String currentStatus,String bookingStatus){
+    String currentStatus,bookingStatus,chartStatus,jounrneyClass;
+    public PnrData(String currentStatus,String bookingStatus,String chartStatus,String jounrneyClass){
         this.bookingStatus=bookingStatus;
         this.currentStatus=currentStatus;
+        this.chartStatus=chartStatus;
+        this.jounrneyClass=jounrneyClass;
     }
 
     public String getCurrentStatus() {
@@ -17,5 +19,13 @@ public class PnrData {
 
     public String getBookingStatus() {
         return bookingStatus;
+    }
+
+    public String getChartStatus() {
+        return chartStatus;
+    }
+
+    public String getJounrneyClass() {
+        return jounrneyClass;
     }
 }
