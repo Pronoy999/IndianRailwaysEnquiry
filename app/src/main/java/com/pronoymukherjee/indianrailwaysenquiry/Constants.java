@@ -29,9 +29,12 @@ public class Constants {
     public static final String TRAIN_POSITION="position";
     public static final String TRAIN_ROUTE="route";
     public static final String TRAIN_DAYS="days";
-    public static final String STATION_ARRIVAL="scharr";
-    public static final String STATION_DEPARTURE="schdep";
-    public static final String STATION_Name="station";
+    public static final String DAY_TS="day";
+    public static final String DISTANCE_TS="distance";
+    public static final String STATION_ARRIVAL_TS="scharr";
+    public static final String STATION_DEPARTURE_TS="schdep";
+    public static final String STATION_TS="station";
+
     public static final String PNR_JSON="pnr";
     public static final String DATE_OF_JOURNEY_PNR="doj";
     public static final String CHART_STATUS="chart_prepared";
