@@ -164,4 +164,50 @@ public class JsonParser {
         }
         return classCode;
     }
+    public JSONArray getRoute()
+    {
+        JSONArray route=new JSONArray();String arrival,departure;
+        int halt,day;
+        try
+        {
+            route=jsonObject.getJSONArray(Constants.TRAIN_ROUTE);
+            for(int i=0;i<route.length();i++)
+            {
+                JSONObject routeObject=route.getJSONObject(i);
+                arrival=getArrivalTime(routeObject);
+                departure=getDepartureTime(routeObject);
+
+        }}
+        catch (JSONException e)
+        {
+            Messages.logMessage(TAG,e.toString());
+        }
+        return route;
+    }
+    public String getArrivalTime(JSONObject routeObject)
+    {String arrival="";
+        try
+        {
+            arrival=routeObject.getString(Constants.STATION_ARRIVAL_TS);
+
+        }
+        catch (JSONException e)
+        {
+            Messages.logMessage(TAG,e.toString());
+        }
+        return arrival;
+    }
+    public String getDepartureTime(JSONObject routeObject)
+    {String departure="";
+        try
+        {
+            departure=routeObject.getString(Constants.STATION_DEPARTURE_TS);
+
+        }
+        catch (JSONException e)
+        {
+            Messages.logMessage(TAG,e.toString());
+        }
+        return departure;
+    }
 }
