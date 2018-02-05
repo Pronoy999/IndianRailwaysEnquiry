@@ -54,6 +54,8 @@ public class Constants {
 
 
     public static Map<Integer,String> responseCodeDesc=new HashMap<>();
+    public static Map<String,String> classCode=new HashMap<>();
+    public static Map<String,String> quotaCode=new HashMap<>();
     /**
      * This is the method to fill the hashmap to store all the response code.
     */
@@ -67,5 +69,44 @@ public class Constants {
          responseCodeDesc.put(404, "No Data Available");
          responseCodeDesc.put(405, "Request couldn't go through");
          responseCodeDesc.put(502, "Invalid Arguments");
+     }
+
+    /**
+     * This is the method to fill the hashmap with the class code.
+     */
+    public static void fillClassCode(){
+         classCode.put("1A","First Class AC.");
+         classCode.put("2A","AC-2 tier sleeper.");
+         classCode.put("FC","First Class");
+         classCode.put("3A","AC-3 tier sleeper.");
+         classCode.put("3E","AC-3 tier economy.");
+         classCode.put("CC","AC Chair car.");
+         classCode.put("SL","Sleeper class.");
+         classCode.put("2S","Second sitting.");
+     }
+
+    /**
+     * This the method to fill the Quota Codes.
+     */
+    public static void fillQuotaCode(){
+        quotaCode.put("GN","General Quota");
+        quotaCode.put("LD","Ladies Quota");
+        quotaCode.put("HO","HeadQuaters/High Official Quota");
+        quotaCode.put("DF","Defence Quota");
+        quotaCode.put("PH","Parliament house Quota");
+        quotaCode.put("FT","Foreign Tourist Quota");
+        quotaCode.put("DP","Duty Pass Quota");
+        quotaCode.put("TQ","Tatkal Quota");
+        quotaCode.put("PT","Premium Tatkal Quota");
+        quotaCode.put("SS","Female(above 45 year)Senior Citizen/Travelling Alone");
+        quotaCode.put("HP","Physically Handicapped Quota");
+        quotaCode.put("RE","Railway employee on Duty for the train");
+        quotaCode.put("GNRS","General Quota Roadside");
+        quotaCode.put("OS","Out Station");
+        quotaCode.put("PQ","Pooled Quota");
+        quotaCode.put("RC(RAC)","Reserved against Cancellation");
+        quotaCode.put("RS","RoadSide");
+        quotaCode.put("YU","Yuva");
+        quotaCode.put("LB","Lower Berth");
      }
 }

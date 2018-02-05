@@ -1,7 +1,11 @@
 package com.pronoymukherjee.indianrailwaysenquiry.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +57,36 @@ public class TrainScheduleActivity extends AppCompatActivity {
         emptyView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         JsonParser parser=new JsonParser(httpConnector.getJsonResponse());
+        //TODO(1): Edit the JSON Parser.
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater=new MenuInflater(getApplicationContext());
+        inflater.inflate(R.menu.get_fare,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        String trainNumber="";
+        if(!trainNumberInput.getText().toString().equals("")){
+            trainNumber=trainNumberInput.getText().toString();
+        }
+        //Getting the Train Number and changing to the Train Fare Activity with this Train Number.
+        Bundle bundle=new Bundle();
+        bundle.putString(Constants.TRAIN_NUMBER,trainNumber);
+        Intent intent;
+        switch (item.getItemId()){
+            case R.id.changeFareActivity:
+                intent=new Intent(TrainScheduleActivity.this,TrainFareActivity.class);
+                intent.putExtras(bundle);
+                break;
+            default: return false;
+        }
+        startActivity(intent);
+        return true;
     }
 }
