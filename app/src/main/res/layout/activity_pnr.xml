@@ -22,7 +22,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +45,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,13 +61,14 @@
             android:layout_weight="1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
-            android:id="@+id/toStationPnr"
-            tools:text="To Station"/>
+            android:id="@+id/trainNumber"
+            tools:text="Train Number"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,7 +89,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,7 +136,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2">
+        android:layout_weight="2"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"

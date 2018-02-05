@@ -17,8 +17,7 @@ public class JsonParser {
         boolean isCorrect=false;
         try {
             int responseCode=jsonObject.getInt(Constants.RESPONSE_CODE);
-            String response=responseCode+"";
-            if(response.startsWith("2"))
+            if(Constants.responseCodeDesc.get(responseCode).equalsIgnoreCase("Success"))
                 isCorrect=true;
 
         } catch (JSONException e) {
