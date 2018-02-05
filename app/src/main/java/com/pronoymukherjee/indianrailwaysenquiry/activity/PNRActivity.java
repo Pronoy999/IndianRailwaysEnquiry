@@ -3,7 +3,6 @@ package com.pronoymukherjee.indianrailwaysenquiry.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,7 +24,7 @@ public class PNRActivity extends AppCompatActivity {
     Button getStatusButton;
     EditText pnrEditText;
     ProgressBar progressBar;
-    TextView emptyView,pnrNumberShow,dateOfJounrey,fromStation,toStation,boardingPoint,reservedUpto;
+    TextView emptyView,pnrNumberShow, dateOfJourney,fromStation, trainNumber,boardingPoint,reservedUpto;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +36,19 @@ public class PNRActivity extends AppCompatActivity {
         emptyView=findViewById(R.id.emptyView);
         listView=findViewById(R.id.passengerList);
         pnrNumberShow=findViewById(R.id.pnrNumberShow);
-        dateOfJounrey=findViewById(R.id.dateOfJourneyPnr);
+        dateOfJourney =findViewById(R.id.dateOfJourneyPnr);
         fromStation=findViewById(R.id.fromStationPnr);
-        toStation=findViewById(R.id.toStationPnr);
+        trainNumber =findViewById(R.id.trainNumber);
         boardingPoint=findViewById(R.id.boardingPointPnr);
         reservedUpto=findViewById(R.id.reservedUptoPnr);
         getStatusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getPnrStaus();
+                getPnrStatus();
             }
         });
     }
-    private void getPnrStaus(){
+    private void getPnrStatus(){
         String pnrNumber=pnrEditText.getText().toString();
         String splitUrl[]=Constants.PNR_STATUS_URL.split("<");
         String secondPart[]=splitUrl[1].split(">");
@@ -61,10 +60,14 @@ public class PNRActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         JsonParser parser=new JsonParser(httpConnector.getJsonResponse());
         progressBar.setVisibility(View.GONE);
+        if(!parser.isCorrectResponse()){
+            Messages.toastMessge(getApplicationContext(),Constants.ERROR_MESSAGE,"long");
+            return;
+        }
         pnrNumberShow.setText(parser.getPnrNumber());
-        dateOfJounrey.setText(parser.getDateofJourneyPnr());
+        dateOfJourney.setText(parser.getDateofJourneyPnr());
         fromStation.setText(parser.getFromStation());
-        toStation.setText(parser.getToStation());
+        trainNumber.setText(parser.getTrainNumber());
         boardingPoint.setText(parser.getBoardingPoint());
         reservedUpto.setText(parser.getReservedUpto());
         String isChartPrepared=parser.getChartStatus()?"Yes":"No";

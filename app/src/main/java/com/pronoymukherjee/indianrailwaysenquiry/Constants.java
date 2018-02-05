@@ -50,7 +50,10 @@ public class Constants {
     public static final String JOURNEY_CLASS_CODE="code";
 
 
-    static Map<Integer,String> responseCodeDesc=new HashMap<>();
+    public static final String ERROR_MESSAGE="Ops! Your connection is wonky.";
+
+
+    public static Map<Integer,String> responseCodeDesc=new HashMap<>();
     /**
      * This is the method to fill the hashmap to store all the response code.
     */
