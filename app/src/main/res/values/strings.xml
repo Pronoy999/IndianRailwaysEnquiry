@@ -10,5 +10,5 @@
     <string name="trainSearch">Enter train name or number</string>
     <string name="gettrainNameNo">Get Schedule</string>
     <string name="emptyView">No data to display.</string>
-
+    <string name="changeFareActivity">Get Fare for this train</string>
 </resources>

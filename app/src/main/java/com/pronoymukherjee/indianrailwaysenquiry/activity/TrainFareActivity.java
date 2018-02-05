@@ -11,5 +11,6 @@ public class TrainFareActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_fare);
+        //TODO:Check the Intent first, if from any other activity.
     }
 }

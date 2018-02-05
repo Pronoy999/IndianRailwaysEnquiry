@@ -12,6 +12,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Filling the HashMap for the Class, Quota and the Response code.
         Constants.fillresponseCodeDesc();
+        Constants.fillClassCode();
+        Constants.fillQuotaCode();
     }
 }
