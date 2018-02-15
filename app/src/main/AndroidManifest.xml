@@ -27,7 +27,8 @@
             android:parentActivityName=".activity.LoginActivity" />
         <activity android:name=".activity.PNRActivity" />
         <activity android:name=".activity.TrainScheduleActivity" />
-        <activity android:name=".activity.TrainFareActivity"/>
+        <activity android:name=".activity.TrainFareActivity" />
+        <activity android:name=".activity.StationNameToCode"></activity>
     </application>
 
 </manifest>

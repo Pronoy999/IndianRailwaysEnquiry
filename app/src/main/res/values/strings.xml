@@ -11,4 +11,8 @@
     <string name="gettrainNameNo">Get Schedule</string>
     <string name="emptyView">No data to display.</string>
     <string name="changeFareActivity">Get Fare for this train</string>
+    <string name="stationCodeHeading">Station Code</string>
+    <string name="stationCodeHint">Enter the Station Name</string>
+    <string name="getStationCode">Get Station Codes</string>
+    <string name="copy">Copy</string>
 </resources>
