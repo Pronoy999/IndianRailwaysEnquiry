@@ -54,14 +54,12 @@ public class PNRActivity extends AppCompatActivity {
         String secondPart[]=splitUrl[1].split(">");
         String url=splitUrl[0]+pnrNumber+secondPart[1];
         Messages.logMessage(TAG,url);
-        HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url);
+        HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url,progressBar);
         listView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
         JsonParser parser=new JsonParser(httpConnector.getJsonResponse());
-        progressBar.setVisibility(View.GONE);
         if(!parser.isCorrectResponse()){
-            Messages.toastMessge(getApplicationContext(),Constants.ERROR_MESSAGE,"long");
+            Messages.toastMessage(getApplicationContext(),Constants.ERROR_MESSAGE_INTERNET,"long");
             return;
         }
         pnrNumberShow.setText(parser.getPnrNumber());

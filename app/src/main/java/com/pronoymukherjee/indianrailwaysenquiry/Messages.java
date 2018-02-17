@@ -24,7 +24,7 @@ public class Messages {
      * @param msg: The message which is to be displayed.
      * @param length: The duration of the Toast Message. Pass NULL for short.
      */
-    public static void toastMessge(Context context,String msg, String length){
+    public static void toastMessage(Context context, String msg, String length){
         if(length.equals("long")){
             Toast.makeText(context,msg,Toast.LENGTH_LONG).show();
         }
