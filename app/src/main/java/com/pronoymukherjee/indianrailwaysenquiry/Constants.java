@@ -59,6 +59,23 @@ public class Constants {
     public static final String COPY_LABEL="copiedText";
     public static final String COPIED_TEXT_MESSAGE="Station Code  copied!";
 
+    public static final String GRID_TEXT_OPTIONS[]={
+            "Seat Avialbility",
+            "Fare Enquiry",
+            "PNR Status",
+            "Train Schedule",
+            "Station Name to Code",
+            "Train Live Status"
+    };
+    public static final int GRID_IMAGE_ID[]={
+            R.drawable.seat,
+            R.drawable.fare,
+            R.drawable.pnr,
+            R.drawable.train,
+            R.drawable.station_code,
+            R.drawable.live_status
+    };
+
     public static Map<Integer,String> responseCodeDesc=new HashMap<>();
     public static Map<String,String> classCode=new HashMap<>();
     public static Map<String,String> quotaCode=new HashMap<>();

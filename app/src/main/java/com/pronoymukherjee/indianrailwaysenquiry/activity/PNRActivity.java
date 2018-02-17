@@ -57,7 +57,8 @@ public class PNRActivity extends AppCompatActivity {
         HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url,progressBar);
         listView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
-        JsonParser parser=new JsonParser(httpConnector.getJsonResponse());
+        httpConnector.makeQuery();
+        JsonParser parser=new JsonParser(httpConnector.jsonResponse);
         if(!parser.isCorrectResponse()){
             Messages.toastMessage(getApplicationContext(),Constants.ERROR_MESSAGE_INTERNET,"long");
             return;

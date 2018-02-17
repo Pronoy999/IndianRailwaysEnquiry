@@ -9,17 +9,18 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.pronoymukherjee.indianrailwaysenquiry.activity.StationNameToCode;
 
 import org.json.JSONObject;
 
 /**
- * Created by pronoymukherjee on 28/01/18.
+ * This is the class to create a Volley Request.
  */
 
 public class HTTPConnector {
     private String TAG=HTTPConnector.class.getSimpleName();
-    private   String queryURL;
-    private JSONObject jsonResponse;
+    private  String queryURL;
+    public JSONObject jsonResponse;
     private Context context;
     private ProgressBar progressBar;
     public HTTPConnector(Context context,String queryURL,ProgressBar progressBar){
@@ -27,10 +28,12 @@ public class HTTPConnector {
         this.queryURL=queryURL;
         this.progressBar=progressBar;
     }
-    public JSONObject getJsonResponse(){
+    public void makeQuery(){
         makequery();
         progressBar.setVisibility(View.VISIBLE);
-        return jsonResponse;
+    }
+    public boolean getJsonResponse(){
+        return true;
     }
     private void makequery(){
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, queryURL, null, new Response.Listener<JSONObject>() {
@@ -38,6 +41,8 @@ public class HTTPConnector {
             public void onResponse(JSONObject response) {
                 jsonResponse=response;
                 progressBar.setVisibility(View.GONE);
+                StationNameToCode.updateStatus();
+                //TODO:Make the Switch case for every class to call the Update method.
             }
         }, new Response.ErrorListener() {
             @Override
