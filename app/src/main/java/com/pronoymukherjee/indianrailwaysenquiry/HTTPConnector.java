@@ -1,6 +1,8 @@
 package com.pronoymukherjee.indianrailwaysenquiry;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -19,12 +21,15 @@ public class HTTPConnector {
     private   String queryURL;
     private JSONObject jsonResponse;
     private Context context;
-    public HTTPConnector(Context context,String queryURL){
+    private ProgressBar progressBar;
+    public HTTPConnector(Context context,String queryURL,ProgressBar progressBar){
         this.context=context;
         this.queryURL=queryURL;
+        this.progressBar=progressBar;
     }
     public JSONObject getJsonResponse(){
         makequery();
+        progressBar.setVisibility(View.VISIBLE);
         return jsonResponse;
     }
     private void makequery(){
@@ -32,6 +37,7 @@ public class HTTPConnector {
             @Override
             public void onResponse(JSONObject response) {
                 jsonResponse=response;
+                progressBar.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
             @Override

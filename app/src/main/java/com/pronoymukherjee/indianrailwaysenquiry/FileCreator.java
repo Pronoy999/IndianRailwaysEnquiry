@@ -23,7 +23,7 @@ public class FileCreator {
     private boolean checkState(){
         String state= Environment.getExternalStorageState();
         if(!state.equals(Environment.MEDIA_MOUNTED)){
-            Messages.toastMessge(context,"External Storage is not found.","");
+            Messages.toastMessage(context,"External Storage is not found.","");
             return false;
         }
         return true;
@@ -43,7 +43,7 @@ public class FileCreator {
             printWriter.flush();
         }
         catch (IOException e){
-            Messages.toastMessge(context,"Oops, an Error occured.","");
+            Messages.toastMessage(context,"Oops, an Error occured.","");
         }
         finally {
             if(printWriter!=null){

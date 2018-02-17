@@ -209,4 +209,20 @@ public class JsonParser {
         }
         return departure;
     }
+    public String[][] getStationCodes(){
+        String stationNameCode[][]=null;
+        try {
+            JSONArray stations=jsonObject.getJSONArray(Constants.STATION_CODE_ARRAY);
+            stationNameCode=new String[stations.length()][2];
+            for(int i=0;i<stations.length();i++){
+                JSONObject eachStation=stations.getJSONObject(i);
+                stationNameCode[i][0]=eachStation.getString(Constants.STATION_CODE_NAME);
+                stationNameCode[i][1]=eachStation.getString(Constants.STATION_CODE);
+            }
+
+        } catch (JSONException e) {
+            Messages.logMessage(TAG,e.toString());
+        }
+        return stationNameCode;
+    }
 }

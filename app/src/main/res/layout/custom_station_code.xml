@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:text="@string/copy"
+            android:id="@+id/copyButton"
             android:textColor="@color/white"
             android:background="@drawable/custom_circle"/>
     </LinearLayout>

@@ -52,10 +52,9 @@ public class TrainScheduleActivity extends AppCompatActivity {
         String splitUrl[]= Constants.TRAIN_ROUTE_URL.split("<");
         String secondPart[]=splitUrl[1].split(">");
         String url=splitUrl[0]+trainNumber+secondPart[1];
-        HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url);
+        HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url,progressBar);
         routeList.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
         JsonParser parser=new JsonParser(httpConnector.getJsonResponse());
         //TODO(1): Edit the JSON Parser.
     }

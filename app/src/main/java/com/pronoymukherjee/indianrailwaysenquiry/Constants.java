@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by pronoymukherjee on 02/02/18.
+ * This is the class which stores all the Constants that are used throughout the code.
  */
 
 public class Constants {
@@ -21,7 +21,7 @@ public class Constants {
     public static String TRAIN_FARE_URL=
             "https://api.railwayapi.com/v2/fare/train/<train number>/source/<stn code>/dest/<stn code>/age/<age>/pref/<class code>/quota/<quota code>/date/<dd-mm-yyyy>/apikey/xnlo6zq3yj/";
 
-    public static String STATION_NAME_CODE="https://api.railwayapi.com/v2/name-to-code/station/<stn name>/apikey/xnlo6zq3yj/";
+    public static String STATION_NAME_CODE_URL="https://api.railwayapi.com/v2/name-to-code/station/<stn name>/apikey/xnlo6zq3yj/";
     public static final String RESPONSE_CODE="response_code";
     public static final String TRAIN_NAME="name";
     public static final String TRAIN_NUMBER="number";
@@ -49,9 +49,15 @@ public class Constants {
     public static final String TOTAL_PASSENGERS="total_passengers";
     public static final String JOURNEY_CLASS_CODE="code";
 
+    public static final String STATION_CODE_ARRAY="stations";
+    public static final String STATION_CODE="code";
+    public static final String STATION_CODE_NAME="name";
 
-    public static final String ERROR_MESSAGE="Ops! Your connection is wonky.";
 
+    public static final String ERROR_MESSAGE_INTERNET ="Ops! Your connection is wonky.";
+    public static final String ERROR_MESSAGE_GENERAL="Something went wrong!";
+    public static final String COPY_LABEL="copiedText";
+    public static final String COPIED_TEXT_MESSAGE="Station Code  copied!";
 
     public static Map<Integer,String> responseCodeDesc=new HashMap<>();
     public static Map<String,String> classCode=new HashMap<>();
