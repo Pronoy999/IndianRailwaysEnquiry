@@ -54,7 +54,7 @@ public class StationNameToCode extends AppCompatActivity {
         String urlSecondPart[]=urlParts[1].split(">");
         String stationNameInput=_stationName.getText().toString();
         String finalUrl=urlParts[0]+stationNameInput+urlSecondPart[1];
-        httpConnector=new HTTPConnector(getApplicationContext(),finalUrl,progressBar);
+        httpConnector=new HTTPConnector(getApplicationContext(),finalUrl,progressBar,TAG);
         httpConnector.makeQuery();
     }
     public static void updateStatus(){

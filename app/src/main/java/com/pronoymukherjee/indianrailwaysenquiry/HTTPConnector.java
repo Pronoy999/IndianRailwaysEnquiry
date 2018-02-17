@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.pronoymukherjee.indianrailwaysenquiry.activity.PNRActivity;
 import com.pronoymukherjee.indianrailwaysenquiry.activity.StationNameToCode;
 
 import org.json.JSONObject;
@@ -23,17 +24,16 @@ public class HTTPConnector {
     public JSONObject jsonResponse;
     private Context context;
     private ProgressBar progressBar;
-    public HTTPConnector(Context context,String queryURL,ProgressBar progressBar){
+    private String className;
+    public HTTPConnector(Context context,String queryURL,ProgressBar progressBar,String className){
         this.context=context;
         this.queryURL=queryURL;
         this.progressBar=progressBar;
+        this.className=className;
     }
     public void makeQuery(){
         makequery();
         progressBar.setVisibility(View.VISIBLE);
-    }
-    public boolean getJsonResponse(){
-        return true;
     }
     private void makequery(){
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, queryURL, null, new Response.Listener<JSONObject>() {
@@ -42,7 +42,12 @@ public class HTTPConnector {
                 jsonResponse=response;
                 progressBar.setVisibility(View.GONE);
                 StationNameToCode.updateStatus();
-                //TODO:Make the Switch case for every class to call the Update method.
+                switch (className){
+                    case "PNRActivity":PNRActivity.updateStatus();
+                        break;
+                    case "StationNameToCode":StationNameToCode.updateStatus();
+                    //TODO(1):Add the Rest.
+                }
             }
         }, new Response.ErrorListener() {
             @Override
