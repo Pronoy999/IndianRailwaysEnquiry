@@ -41,9 +41,11 @@ public class StationNameToCode extends AppCompatActivity {
         listView=findViewById(R.id.stationCodeList);
         listView.setEmptyView(_emptyView);
         progressBar=findViewById(R.id.progessBarStationCode);
+        progressBar.setVisibility(View.GONE);
         _getStationCodes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 setStationCodes();
             }
         });
