@@ -25,7 +25,7 @@
     <string name="trainNumber">Enter the Train Number</string>
     <string name="date">Journey Date</string>
     <string name="fareForOne">Fare for One Person:</string>
-    <string name="numberOfPerson">Number of Person:</string>
+    <string name="numberOfPerson">Number of Person(s):</string>
     <string name="totalFare">Total Fare:</string>
     <string name="rsSymbol">\u20B9</string>
 </resources>

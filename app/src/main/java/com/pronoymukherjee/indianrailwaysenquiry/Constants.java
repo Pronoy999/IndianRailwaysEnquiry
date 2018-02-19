@@ -76,60 +76,60 @@ public class Constants {
             R.drawable.live_status
     };
 
-    public static Map<Integer,String> responseCodeDesc=new HashMap<>();
-    public static Map<String,String> classCode=new HashMap<>();
-    public static Map<String,String> quotaCode=new HashMap<>();
+    public static Map<Integer,String> RESPONSE_CODE_DESC =new HashMap<>();
+    public static Map<String,String> CLASS_CODE =new HashMap<>();
+    public static Map<String,String> QUOTA_CODE =new HashMap<>();
     /**
      * This is the method to fill the hashmap to store all the response code.
     */
      public static void fillresponseCodeDesc() {
-         responseCodeDesc.put(200, "Success");
-         responseCodeDesc.put(210, "Train doesn't run on the date queried");
-         responseCodeDesc.put(211, "Train doesn't have journey class queried");
-         responseCodeDesc.put(220, "Flushed PNR");
-         responseCodeDesc.put(221, "Invalid PNR");
-         responseCodeDesc.put(230, "Date chosen for the query is not valid for chosen parameters");
-         responseCodeDesc.put(404, "No Data Available");
-         responseCodeDesc.put(405, "Request couldn't go through");
-         responseCodeDesc.put(502, "Invalid Arguments");
+         RESPONSE_CODE_DESC.put(200, "Success");
+         RESPONSE_CODE_DESC.put(210, "Train doesn't run on the date queried");
+         RESPONSE_CODE_DESC.put(211, "Train doesn't have journey class queried");
+         RESPONSE_CODE_DESC.put(220, "Flushed PNR");
+         RESPONSE_CODE_DESC.put(221, "Invalid PNR");
+         RESPONSE_CODE_DESC.put(230, "Date chosen for the query is not valid for chosen parameters");
+         RESPONSE_CODE_DESC.put(404, "No Data Available");
+         RESPONSE_CODE_DESC.put(405, "Request couldn't go through");
+         RESPONSE_CODE_DESC.put(502, "Invalid Arguments");
      }
 
     /**
      * This is the method to fill the hashmap with the class code.
      */
     public static void fillClassCode(){
-         classCode.put("1A","First Class AC.");
-         classCode.put("2A","AC-2 tier sleeper.");
-         classCode.put("FC","First Class");
-         classCode.put("3A","AC-3 tier sleeper.");
-         classCode.put("3E","AC-3 tier economy.");
-         classCode.put("CC","AC Chair car.");
-         classCode.put("SL","Sleeper class.");
-         classCode.put("2S","Second sitting.");
+         CLASS_CODE.put("1A","First Class AC.");
+         CLASS_CODE.put("2A","AC-2 tier sleeper.");
+         CLASS_CODE.put("FC","First Class");
+         CLASS_CODE.put("3A","AC-3 tier sleeper.");
+         CLASS_CODE.put("3E","AC-3 tier economy.");
+         CLASS_CODE.put("CC","AC Chair car.");
+         CLASS_CODE.put("SL","Sleeper class.");
+         CLASS_CODE.put("2S","Second sitting.");
      }
 
     /**
      * This the method to fill the Quota Codes.
      */
     public static void fillQuotaCode(){
-        quotaCode.put("GN","General Quota");
-        quotaCode.put("LD","Ladies Quota");
-        quotaCode.put("HO","HeadQuaters/High Official Quota");
-        quotaCode.put("DF","Defence Quota");
-        quotaCode.put("PH","Parliament house Quota");
-        quotaCode.put("FT","Foreign Tourist Quota");
-        quotaCode.put("DP","Duty Pass Quota");
-        quotaCode.put("TQ","Tatkal Quota");
-        quotaCode.put("PT","Premium Tatkal Quota");
-        quotaCode.put("SS","Female(above 45 year)Senior Citizen/Travelling Alone");
-        quotaCode.put("HP","Physically Handicapped Quota");
-        quotaCode.put("RE","Railway employee on Duty for the train");
-        quotaCode.put("GNRS","General Quota Roadside");
-        quotaCode.put("OS","Out Station");
-        quotaCode.put("PQ","Pooled Quota");
-        quotaCode.put("RC(RAC)","Reserved against Cancellation");
-        quotaCode.put("RS","RoadSide");
-        quotaCode.put("YU","Yuva");
-        quotaCode.put("LB","Lower Berth");
+        QUOTA_CODE.put("GN","General Quota");
+        QUOTA_CODE.put("LD","Ladies Quota");
+        QUOTA_CODE.put("HO","HeadQuaters/High Official Quota");
+        QUOTA_CODE.put("DF","Defence Quota");
+        QUOTA_CODE.put("PH","Parliament house Quota");
+        QUOTA_CODE.put("FT","Foreign Tourist Quota");
+        QUOTA_CODE.put("DP","Duty Pass Quota");
+        QUOTA_CODE.put("TQ","Tatkal Quota");
+        QUOTA_CODE.put("PT","Premium Tatkal Quota");
+        QUOTA_CODE.put("SS","Female(above 45 year)Senior Citizen/Travelling Alone");
+        QUOTA_CODE.put("HP","Physically Handicapped Quota");
+        QUOTA_CODE.put("RE","Railway employee on Duty for the train");
+        QUOTA_CODE.put("GNRS","General Quota Roadside");
+        QUOTA_CODE.put("OS","Out Station");
+        QUOTA_CODE.put("PQ","Pooled Quota");
+        QUOTA_CODE.put("RC(RAC)","Reserved against Cancellation");
+        QUOTA_CODE.put("RS","RoadSide");
+        QUOTA_CODE.put("YU","Yuva");
+        QUOTA_CODE.put("LB","Lower Berth");
      }
 }

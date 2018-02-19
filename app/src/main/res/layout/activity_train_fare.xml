@@ -54,12 +54,13 @@
                 android:id="@+id/quotaFare"
                 android:spinnerMode="dropdown"
                 android:layout_weight="1"/>
-            <Spinner
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ageFare"
+                android:inputType="number"
                 android:layout_weight="1"
-                android:spinnerMode="dropdown"/>
+                android:hint="@string/age"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="none"
+                android:inputType="date"
                 android:clickable="true"
                 android:focusable="true"
                 android:id="@+id/date"
@@ -127,13 +128,14 @@
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:textColor="@color/black"/>
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.2"
                 android:id="@+id/numberofPerson"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
+                android:inputType="number"
                 android:textColor="@color/black"
                 tools:text="5"/>
         </LinearLayout>
@@ -168,6 +170,27 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 tools:text="568"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_shape"
+                android:text="@string/getFare"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:id="@+id/getFare"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -4,8 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
-
 /**This is the class to Parse the different types of JSON Responses.
  */
 
@@ -19,7 +17,7 @@ public class JsonParser {
         boolean isCorrect=false;
         try {
             int responseCode=jsonObject.getInt(Constants.RESPONSE_CODE);
-            if(Constants.responseCodeDesc.get(responseCode).equalsIgnoreCase("Success"))
+            if(Constants.RESPONSE_CODE_DESC.get(responseCode).equalsIgnoreCase("Success"))
                 isCorrect=true;
 
         } catch (JSONException e) {
