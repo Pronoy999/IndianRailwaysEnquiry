@@ -1,5 +1,6 @@
 package com.pronoymukherjee.indianrailwaysenquiry.activity;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,12 +25,16 @@ public class PNRActivity extends AppCompatActivity {
     Button getStatusButton;
     EditText pnrEditText;
     ProgressBar progressBar;
-    TextView emptyView,pnrNumberShow, dateOfJourney,fromStation, trainNumber,boardingPoint,reservedUpto;
-    ListView listView;
+    static TextView emptyView,pnrNumberShow, dateOfJourney,fromStation, trainNumber,boardingPoint,reservedUpto;
+    static ListView listView;
+    static Activity PNRActivityContext;
+    static HTTPConnector httpConnector;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pnr);
+        PNRActivityContext=PNRActivity.this;
+        setTitle(TAG);
         getStatusButton=findViewById(R.id.enterPNR);
         pnrEditText=findViewById(R.id.pnrNumberInput);
         progressBar=findViewById(R.id.progessBar);
@@ -54,12 +59,15 @@ public class PNRActivity extends AppCompatActivity {
         String secondPart[]=splitUrl[1].split(">");
         String url=splitUrl[0]+pnrNumber+secondPart[1];
         Messages.logMessage(TAG,url);
-        HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url,progressBar);
+        httpConnector=new HTTPConnector(getApplicationContext(),url,progressBar,TAG);
         listView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
-        JsonParser parser=new JsonParser(httpConnector.getJsonResponse());
+        httpConnector.makeQuery();
+    }
+    public static void updateStatus(){
+        JsonParser parser=new JsonParser(httpConnector.jsonResponse);
         if(!parser.isCorrectResponse()){
-            Messages.toastMessage(getApplicationContext(),Constants.ERROR_MESSAGE_INTERNET,"long");
+            Messages.toastMessage(PNRActivityContext,Constants.ERROR_MESSAGE_INTERNET,"long");
             return;
         }
         pnrNumberShow.setText(parser.getPnrNumber());
@@ -77,7 +85,7 @@ public class PNRActivity extends AppCompatActivity {
             PnrData pnrData=new PnrData(status[i][0],status[i][1],isChartPrepared,classCode);
             pnrStatus.add(pnrData);
         }
-        PnrAdapter adapter=new PnrAdapter(PNRActivity.this,pnrStatus);
+        PnrAdapter adapter=new PnrAdapter(PNRActivityContext,pnrStatus);
         listView.setAdapter(adapter);
         listView.setVisibility(View.VISIBLE);
     }

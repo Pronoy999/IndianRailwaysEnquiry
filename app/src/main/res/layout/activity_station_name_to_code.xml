@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:id="@+id/stationCodeList"/>
         <ProgressBar
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/progessBarStationCode"
             style="@style/Base.Widget.AppCompat.ProgressBar"/>
@@ -39,7 +39,8 @@
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp">
+        android:layout_marginEnd="15dp"
+        android:orientation="vertical">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -51,7 +52,6 @@
             android:id="@+id/emptyViewStationCode"
             android:text="@string/emptyView"/>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

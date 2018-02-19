@@ -19,10 +19,11 @@ import com.pronoymukherjee.indianrailwaysenquiry.JsonParser;
 import com.pronoymukherjee.indianrailwaysenquiry.R;
 
 public class TrainScheduleActivity extends AppCompatActivity {
-    TextView trainName,trainNumber,trainDays,trainSource,sourcedepartureTime,emptyView;
-    ListView routeList;
-    EditText trainNumberInput;
+    static TextView trainName,trainNumber,trainDays,trainSource,sourcedepartureTime,emptyView;
+    static ListView routeList;
+    static EditText trainNumberInput;
     ProgressBar progressBar;Button getStatus;
+    String TAG=TrainScheduleActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class TrainScheduleActivity extends AppCompatActivity {
         trainName=findViewById(R.id.trainName);
         trainNumber=findViewById(R.id.trainNumber);
         trainDays=findViewById(R.id.trainDays);
-    trainSource=findViewById(R.id.trainSource);
+        trainSource=findViewById(R.id.trainSource);
         sourcedepartureTime=findViewById(R.id.sourcedepartureTime);
         emptyView=findViewById(R.id.emptyView);
         routeList=findViewById(R.id.routeList);
@@ -46,16 +47,16 @@ public class TrainScheduleActivity extends AppCompatActivity {
         });
 
     }
-    private void getTrainSchedule()
-    {
+    private void getTrainSchedule(){
         String trainNumber=trainNumberInput.getText().toString();
         String splitUrl[]= Constants.TRAIN_ROUTE_URL.split("<");
         String secondPart[]=splitUrl[1].split(">");
         String url=splitUrl[0]+trainNumber+secondPart[1];
-        HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url,progressBar);
+        HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url,progressBar,TAG);
         routeList.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
-        JsonParser parser=new JsonParser(httpConnector.getJsonResponse());
+        httpConnector.makeQuery();
+        JsonParser parser=new JsonParser(httpConnector.jsonResponse);
         //TODO(1): Edit the JSON Parser.
     }
 
@@ -87,5 +88,8 @@ public class TrainScheduleActivity extends AppCompatActivity {
         }
         startActivity(intent);
         return true;
+    }
+    public static void updateStatus(){
+
     }
 }

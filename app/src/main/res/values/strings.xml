@@ -15,4 +15,17 @@
     <string name="stationCodeHint">Enter the Station Name</string>
     <string name="getStationCode">Get Station Codes</string>
     <string name="copy">Copy</string>
+    <string name="fareActivity">Get Fare</string>
+    <string name="sourceStation">Station Code of Source</string>
+    <string name="destinationStation">Station Code of Destination</string>
+    <string name="age">Age</string>
+    <string name="classFare">Class</string>
+    <string name="quota">Quota</string>
+    <string name="getFare">Get Fare</string>
+    <string name="trainNumber">Enter the Train Number</string>
+    <string name="date">Journey Date</string>
+    <string name="fareForOne">Fare for One Person:</string>
+    <string name="numberOfPerson">Number of Person(s):</string>
+    <string name="totalFare">Total Fare:</string>
+    <string name="rsSymbol">\u20B9</string>
 </resources>

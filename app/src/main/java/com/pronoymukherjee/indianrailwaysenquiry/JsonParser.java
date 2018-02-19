@@ -17,7 +17,7 @@ public class JsonParser {
         boolean isCorrect=false;
         try {
             int responseCode=jsonObject.getInt(Constants.RESPONSE_CODE);
-            if(Constants.responseCodeDesc.get(responseCode).equalsIgnoreCase("Success"))
+            if(Constants.RESPONSE_CODE_DESC.get(responseCode).equalsIgnoreCase("Success"))
                 isCorrect=true;
 
         } catch (JSONException e) {
@@ -219,6 +219,7 @@ public class JsonParser {
                 stationNameCode[i][0]=eachStation.getString(Constants.STATION_CODE_NAME);
                 stationNameCode[i][1]=eachStation.getString(Constants.STATION_CODE);
             }
+            //Arrays.sort(stationNameCode,(String s1[],String s2[])->s2[0].compareTo(s1[0]));
 
         } catch (JSONException e) {
             Messages.logMessage(TAG,e.toString());
