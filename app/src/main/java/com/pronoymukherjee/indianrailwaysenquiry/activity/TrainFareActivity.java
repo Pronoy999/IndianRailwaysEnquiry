@@ -1,6 +1,5 @@
 package com.pronoymukherjee.indianrailwaysenquiry.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -43,9 +42,14 @@ public class TrainFareActivity extends AppCompatActivity {
                 trainNumber.setText(bundle.getString(Constants.TRAIN_NUMBER));
             }
         }
+        setAdapters();
+        //TODO: Make the Edit Text Date Journey.
+    }
+
+    private void setAdapters() {
         ArrayList<String> quotaList=new ArrayList<>();
         quotaList.add("Quota:");//Setting the label of the spinner.
-        for(Map.Entry<String,String> entry:Constants.QUOTA_CODE.entrySet()){
+        for(Map.Entry<String,String> entry: Constants.QUOTA_CODE.entrySet()){
             quotaList.add(entry.getKey());
         }
         ArrayList<String> classList=new ArrayList<>();
@@ -129,8 +133,8 @@ public class TrainFareActivity extends AppCompatActivity {
                 Messages.toastMessage(getApplicationContext(),"Please select a Quota.","");
             }
         });
-        //TODO: Make the Edit Text Date Journey.
     }
+
     private void initializeViews(){
         sourceStation=findViewById(R.id.sourceStation);
         destinationStation=findViewById(R.id.destinationStation);
