@@ -18,17 +18,19 @@ import com.pronoymukherjee.indianrailwaysenquiry.PnrAdapter;
 import com.pronoymukherjee.indianrailwaysenquiry.PnrData;
 import com.pronoymukherjee.indianrailwaysenquiry.R;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class PNRActivity extends AppCompatActivity {
+public class PNRActivity extends AppCompatActivity implements HTTPConnector.ResponseListener {
     String TAG=PNRActivity.class.getSimpleName();
     Button getStatusButton;
     EditText pnrEditText;
     ProgressBar progressBar;
-    static TextView emptyView,pnrNumberShow, dateOfJourney,fromStation, trainNumber,boardingPoint,reservedUpto;
-    static ListView listView;
-    static Activity PNRActivityContext;
-    static HTTPConnector httpConnector;
+    TextView emptyView,pnrNumberShow, dateOfJourney,fromStation, trainNumber,boardingPoint,reservedUpto;
+    ListView listView;
+    Activity PNRActivityContext;
+    HTTPConnector httpConnector;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,13 +61,17 @@ public class PNRActivity extends AppCompatActivity {
         String secondPart[]=splitUrl[1].split(">");
         String url=splitUrl[0]+pnrNumber+secondPart[1];
         Messages.logMessage(TAG,url);
-        httpConnector=new HTTPConnector(getApplicationContext(),url,progressBar,TAG);
+        progressBar.setVisibility(View.VISIBLE);
+        httpConnector=new HTTPConnector(getApplicationContext(),url,this);
         listView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
         httpConnector.makeQuery();
     }
-    public static void updateStatus(){
-        JsonParser parser=new JsonParser(httpConnector.jsonResponse);
+
+    @Override
+    public void sendResponse(JSONObject responseObject) {
+        JsonParser parser=new JsonParser(responseObject);
+        progressBar.setVisibility(View.GONE);
         if(!parser.isCorrectResponse()){
             Messages.toastMessage(PNRActivityContext,Constants.ERROR_MESSAGE_INTERNET,"long");
             return;

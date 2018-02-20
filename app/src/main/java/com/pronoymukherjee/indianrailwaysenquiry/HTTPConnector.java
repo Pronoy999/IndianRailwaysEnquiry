@@ -21,32 +21,24 @@ import org.json.JSONObject;
 public class HTTPConnector {
     private String TAG=HTTPConnector.class.getSimpleName();
     private  String queryURL;
-    public JSONObject jsonResponse;
+    private JSONObject jsonResponse;
     private Context context;
-    private ProgressBar progressBar;
-    private String className;
-    public HTTPConnector(Context context,String queryURL,ProgressBar progressBar,String className){
+    private ResponseListener responseListener;
+    public interface ResponseListener{
+        void sendResponse(JSONObject responseObject);
+    }
+    public HTTPConnector(Context context,String queryURL,ResponseListener responseListener){
         this.context=context;
         this.queryURL=queryURL;
-        this.progressBar=progressBar;
-        this.className=className;
+        this.responseListener=responseListener;
     }
     public void makeQuery(){
-        makequery();
-        progressBar.setVisibility(View.VISIBLE);
-    }
-    private void makequery(){
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, queryURL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 jsonResponse=response;
-                progressBar.setVisibility(View.GONE);
-                StationNameToCode.updateStatus();
-                switch (className){
-                    case "PNRActivity":PNRActivity.updateStatus();
-                        break;
-                    case "StationNameToCode":StationNameToCode.updateStatus();
-                    //TODO(1):Add the Rest.
+                if (responseListener!=null){
+                    responseListener.sendResponse(response);
                 }
             }
         }, new Response.ErrorListener() {

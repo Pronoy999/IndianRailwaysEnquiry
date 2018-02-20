@@ -76,10 +76,10 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="date"
+                android:layout_weight="1.1"
+                android:inputType="none"
                 android:clickable="true"
-                android:focusable="true"
+                android:focusable="false"
                 android:id="@+id/date"
                 android:hint="@string/date"/>
         </LinearLayout>
@@ -173,10 +173,17 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp" />
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBarFare"
+                android:layout_gravity="center"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

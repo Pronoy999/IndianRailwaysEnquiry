@@ -18,7 +18,9 @@ import com.pronoymukherjee.indianrailwaysenquiry.HTTPConnector;
 import com.pronoymukherjee.indianrailwaysenquiry.JsonParser;
 import com.pronoymukherjee.indianrailwaysenquiry.R;
 
-public class TrainScheduleActivity extends AppCompatActivity {
+import org.json.JSONObject;
+
+public class TrainScheduleActivity extends AppCompatActivity implements HTTPConnector.ResponseListener {
     static TextView trainName,trainNumber,trainDays,trainSource,sourcedepartureTime,emptyView;
     static ListView routeList;
     static EditText trainNumberInput;
@@ -52,7 +54,7 @@ public class TrainScheduleActivity extends AppCompatActivity {
         String splitUrl[]= Constants.TRAIN_ROUTE_URL.split("<");
         String secondPart[]=splitUrl[1].split(">");
         String url=splitUrl[0]+trainNumber+secondPart[1];
-        HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url,progressBar,TAG);
+        HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url,this);
         routeList.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
         httpConnector.makeQuery();
@@ -89,7 +91,9 @@ public class TrainScheduleActivity extends AppCompatActivity {
         startActivity(intent);
         return true;
     }
-    public static void updateStatus(){
+
+    @Override
+    public void sendResponse(JSONObject responseObject) {
 
     }
 }
