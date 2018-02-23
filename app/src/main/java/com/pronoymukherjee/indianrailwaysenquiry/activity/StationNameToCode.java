@@ -17,17 +17,19 @@ import com.pronoymukherjee.indianrailwaysenquiry.R;
 import com.pronoymukherjee.indianrailwaysenquiry.StationCodeAdapter;
 import com.pronoymukherjee.indianrailwaysenquiry.StationCodeData;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class StationNameToCode extends AppCompatActivity {
+public class StationNameToCode extends AppCompatActivity implements HTTPConnector.ResponseListener {
     String TAG=StationNameToCode.class.getSimpleName();
     EditText _stationName;
     Button _getStationCodes;
-    static ListView listView;
+    ListView listView;
     ProgressBar progressBar;
     TextView _emptyView;
-    static HTTPConnector httpConnector;
-    static Activity stationNameToCodeContext;
+    HTTPConnector httpConnector;
+    Activity stationNameToCodeContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,6 @@ public class StationNameToCode extends AppCompatActivity {
         _getStationCodes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
                 setStationCodes();
             }
         });
@@ -55,11 +56,14 @@ public class StationNameToCode extends AppCompatActivity {
         String urlSecondPart[]=urlParts[1].split(">");
         String stationNameInput=_stationName.getText().toString();
         String finalUrl=urlParts[0]+stationNameInput+urlSecondPart[1];
-        httpConnector=new HTTPConnector(getApplicationContext(),finalUrl,progressBar,TAG);
+        httpConnector=new HTTPConnector(getApplicationContext(),finalUrl,this);
+        progressBar.setVisibility(View.VISIBLE);
         httpConnector.makeQuery();
     }
-    public static void updateStatus(){
-        JsonParser parser=new JsonParser(httpConnector.jsonResponse);
+    @Override
+    public void sendResponse(JSONObject response){
+        progressBar.setVisibility(View.GONE);
+        JsonParser parser=new JsonParser(response);
         String stationNameCode[][]=parser.getStationCodes();
         ArrayList<StationCodeData> arrayList=new ArrayList<>();
         for(int i=0;i<stationNameCode.length;i++){

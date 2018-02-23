@@ -226,4 +226,14 @@ public class JsonParser {
         }
         return stationNameCode;
     }
+    public String getFare(){
+        String fare="";
+        try{
+            fare=jsonObject.getString(Constants.FARE);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return fare;
+    }
 }
