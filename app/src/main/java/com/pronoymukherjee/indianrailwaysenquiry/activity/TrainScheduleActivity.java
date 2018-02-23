@@ -58,7 +58,6 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
         routeList.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
         httpConnector.makeQuery();
-        JsonParser parser=new JsonParser(httpConnector.jsonResponse);
         //TODO(1): Edit the JSON Parser.
     }
 

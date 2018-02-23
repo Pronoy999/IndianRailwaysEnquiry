@@ -26,7 +26,8 @@
         <activity android:name=".activity.TrainScheduleActivity" />
         <activity android:name=".activity.TrainFareActivity" />
         <activity android:name=".activity.StationNameToCode"
-            android:parentActivityName=".activity.MainActivity"/>
+            android:parentActivityName=".activity.MainActivity"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

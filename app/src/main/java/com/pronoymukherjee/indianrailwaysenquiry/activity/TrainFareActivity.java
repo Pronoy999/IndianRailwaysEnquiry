@@ -72,7 +72,8 @@ public class TrainFareActivity extends AppCompatActivity implements HTTPConnecto
         getFare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sourceStation.getText().toString().equals("") || destinationStation.getText().toString().equals("")
+                if(sourceStation.getText().toString().equals("")
+                        || destinationStation.getText().toString().equals("")
                         || age.getText().toString().equals("")
                         || journeyDate.getText().toString().equals("")
                         || classFare.getSelectedItemPosition()==0
