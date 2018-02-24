@@ -31,6 +31,17 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_schedule);
+        initializeViews();
+        getStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getTrainSchedule();
+            }
+        });
+
+    }
+
+    private void initializeViews() {
         trainName=findViewById(R.id.trainName);
         trainNumber=findViewById(R.id.trainNumber);
         trainDays=findViewById(R.id.trainDays);
@@ -41,14 +52,8 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
         trainNumberInput=findViewById(R.id.trainNumberInput);
         progressBar=findViewById(R.id.progessBar);
         getStatus=findViewById(R.id.getStatus);
-        getStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getTrainSchedule();
-            }
-        });
-
     }
+
     private void getTrainSchedule(){
         String trainNumber=trainNumberInput.getText().toString();
         String splitUrl[]= Constants.TRAIN_ROUTE_URL.split("<");
@@ -56,9 +61,9 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
         String url=splitUrl[0]+trainNumber+secondPart[1];
         HTTPConnector httpConnector=new HTTPConnector(getApplicationContext(),url,this);
         routeList.setVisibility(View.GONE);
-        emptyView.setVisibility(View.GONE);
+        routeList.setEmptyView(emptyView);
+        progressBar.setVisibility(View.VISIBLE);
         httpConnector.makeQuery();
-        //TODO(1): Edit the JSON Parser.
     }
 
     @Override
@@ -93,6 +98,10 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
 
     @Override
     public void sendResponse(JSONObject responseObject) {
-
+        JsonParser parser=new JsonParser(responseObject);
+        progressBar.setVisibility(View.GONE);
+        trainNumber.setText(parser.getTrainNumber());
+        trainName.setText(parser.getTrainName());
+        //TODO(1): Set data to views.
     }
 }
