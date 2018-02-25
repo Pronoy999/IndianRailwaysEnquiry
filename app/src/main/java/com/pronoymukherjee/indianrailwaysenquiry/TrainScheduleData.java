@@ -6,8 +6,9 @@ package com.pronoymukherjee.indianrailwaysenquiry;
 
 public class TrainScheduleData {
     String stationName,arrival,departure;
-    int halt,days,distance;
-    public TrainScheduleData(String stationName,String arrival,String departure,int halt,int days,int distance)
+    int halt,days;
+    double distance;
+    public TrainScheduleData(String stationName,String arrival,String departure,int halt,int days,double distance)
     {
         this.stationName=stationName;
         this.distance=distance;
@@ -21,8 +22,8 @@ public class TrainScheduleData {
         return stationName;
     }
 
-    public int getDistance() {
-        return distance;
+    public String getDistance() {
+        return String.valueOf(distance);
     }
 
     public String getArrival() {
@@ -33,11 +34,11 @@ public class TrainScheduleData {
         return departure;
     }
 
-    public int getDays() {
-        return days;
+    public String getDays() {
+        return String.valueOf(days);
     }
 
-    public int getHalt() {
-        return halt;
+    public String getHalt() {
+        return String.valueOf(halt);
     }
 }

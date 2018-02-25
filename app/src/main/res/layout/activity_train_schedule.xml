@@ -77,16 +77,24 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             tools:text="Source Station" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:text="@string/arrowSymbol"
+            android:textStyle="bold"
+            android:textSize="27sp"
+            android:textAlignment="center"/>
 
         <TextView
-            android:id="@+id/sourcedepartureTime"
+            android:id="@+id/trainDestination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textStyle="bold"
-            tools:text="Departure Time" />
+            tools:text="DestinationStation" />
 
     </LinearLayout>
     <LinearLayout

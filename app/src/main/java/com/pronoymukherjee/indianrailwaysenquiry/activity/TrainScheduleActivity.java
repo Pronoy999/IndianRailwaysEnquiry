@@ -16,14 +16,21 @@ import android.widget.TextView;
 import com.pronoymukherjee.indianrailwaysenquiry.Constants;
 import com.pronoymukherjee.indianrailwaysenquiry.HTTPConnector;
 import com.pronoymukherjee.indianrailwaysenquiry.JsonParser;
+import com.pronoymukherjee.indianrailwaysenquiry.Messages;
 import com.pronoymukherjee.indianrailwaysenquiry.R;
+import com.pronoymukherjee.indianrailwaysenquiry.TrainScheduleAdapter;
+import com.pronoymukherjee.indianrailwaysenquiry.TrainScheduleData;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class TrainScheduleActivity extends AppCompatActivity implements HTTPConnector.ResponseListener {
-    static TextView trainName,trainNumber,trainDays,trainSource,sourcedepartureTime,emptyView;
-    static ListView routeList;
-    static EditText trainNumberInput;
+    TextView trainName,trainNumber,trainDays,trainSource, trainDestination,emptyView;
+    ListView routeList;
+    EditText trainNumberInput;
     ProgressBar progressBar;Button getStatus;
     String TAG=TrainScheduleActivity.class.getSimpleName();
 
@@ -35,10 +42,10 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
         getStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getTrainSchedule();
+                if(!trainNumberInput.getText().toString().equals(""))
+                    getTrainSchedule();
             }
         });
-
     }
 
     private void initializeViews() {
@@ -46,7 +53,7 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
         trainNumber=findViewById(R.id.trainNumber);
         trainDays=findViewById(R.id.trainDays);
         trainSource=findViewById(R.id.trainSource);
-        sourcedepartureTime=findViewById(R.id.sourcedepartureTime);
+        trainDestination =findViewById(R.id.trainDestination);
         emptyView=findViewById(R.id.emptyView);
         routeList=findViewById(R.id.routeList);
         trainNumberInput=findViewById(R.id.trainNumberInput);
@@ -99,9 +106,62 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
     @Override
     public void sendResponse(JSONObject responseObject) {
         JsonParser parser=new JsonParser(responseObject);
+        if(!parser.isCorrectResponse()){
+            Messages.toastMessage(getApplicationContext(),Constants.ERROR_MESSAGE_INTERNET,"");
+            return;
+        }
         progressBar.setVisibility(View.GONE);
         trainNumber.setText(parser.getTrainNumber());
         trainName.setText(parser.getTrainName());
         //TODO(1): Set data to views.
+        setData(parser);
+    }
+
+    private void setData(JsonParser parser){
+        JSONArray days=parser.getDays();
+        StringBuilder builder=new StringBuilder(trainDays.getText().toString());
+        builder.append("\t");
+        int l=days.length(),i;
+        for(i=0;i<l;i++){
+            if(parser.isRunningOnDay(i,days)){
+                try {
+                    String status = days.getJSONObject(i).getString(Constants.TRAIN_DAYS_RUNS_TS);
+                    if (status.equals("Y")) {
+                        builder.append(days.getJSONObject(i).getString(Constants.STATION_CODE));
+                        builder.append("  ");
+                    }
+                }
+                catch (JSONException e){
+                    Messages.logMessage(TAG,e.toString());
+                }
+            }
+        }
+        JSONArray route=parser.getRoute();
+        JSONObject station=parser.getStationTrainSchedule(0);
+        String sourceStationName=parser.getStationName(station);
+        String schDept=parser.getScheduleDeparture(0,route);
+        StringBuilder _display=new StringBuilder(sourceStationName);
+        _display.append("\n"+schDept);
+        trainSource.setText(_display.toString());
+        station=parser.getStationTrainSchedule(route.length()-1);
+        String destStationName=parser.getStationName(station);
+        String schArr=parser.getScheduledArrival(route.length()-1,route);
+        _display=new StringBuilder(destStationName+"\n"+schArr);
+        trainDestination.setText(_display.toString());
+        ArrayList<TrainScheduleData> scheduleData=new ArrayList<>();
+        for(i=0;i<route.length();i++){
+            String stationName=parser.getStationName(parser.getStationTrainSchedule(i));
+            String schArrival=parser.getScheduledArrival(i,route);
+            String schDepture=parser.getScheduleDeparture(i,route);
+            int halt=Integer.parseInt(parser.getScheduleHalt(i,route));
+            int day=Integer.parseInt(parser.getScheduleDay(i,route));
+            double distance=Double.parseDouble(parser.getScheduleDistance(i,route));
+            TrainScheduleData data=new TrainScheduleData(stationName,
+                    schArrival,schDepture,halt,day,distance);
+            scheduleData.add(data);
+        }
+        TrainScheduleAdapter adapter=new TrainScheduleAdapter(TrainScheduleActivity.this,scheduleData);
+        routeList.setAdapter(adapter);
+        routeList.setVisibility(View.VISIBLE);
     }
 }
