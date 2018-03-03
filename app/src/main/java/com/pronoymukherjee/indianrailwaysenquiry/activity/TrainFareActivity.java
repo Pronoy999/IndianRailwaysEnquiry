@@ -47,6 +47,7 @@ public class TrainFareActivity extends AppCompatActivity implements HTTPConnecto
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_fare);
+        setTitle(getResources().getString(R.string.fareActivity));
         initializeViews();
         numberOfPassenger.setText("1");
         Bundle bundle=getIntent().getExtras();

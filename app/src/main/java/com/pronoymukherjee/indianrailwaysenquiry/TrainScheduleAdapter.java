@@ -36,11 +36,19 @@ public class TrainScheduleAdapter extends ArrayAdapter {
         TextView departure=listItem.findViewById(R.id.tvDepartureTime);
         TextView days=listItem.findViewById(R.id.tvDay);
         TrainScheduleData trainScheduleData=routeList.get(position);
+        String temp="";
         stationName.setText(trainScheduleData.getStationName());
-        distance.setText(trainScheduleData.getDistance());
-        arrival.setText(trainScheduleData.getArrival());
-        halt.setText(trainScheduleData.getHalt());
-        departure.setText(trainScheduleData.getDeparture());
+        temp=trainScheduleData.getDistance();
+        distance.setText(temp);
+        temp="";
+        temp="Arrival:      "+trainScheduleData.getArrival();
+        arrival.setText(temp);
+        temp="";
+        temp="Halt: "+trainScheduleData.getHalt();
+        halt.setText(temp);
+        temp="";
+        temp="Departure: "+trainScheduleData.getDeparture();
+        departure.setText(temp);
         days.setText(trainScheduleData.getDays());
         return listItem;
     }

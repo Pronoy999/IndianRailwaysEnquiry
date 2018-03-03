@@ -281,4 +281,24 @@ public class JsonParser {
         }
         return schHlt;
     }
+    public JSONObject getStationTrainSchedule(int index){
+        JSONObject station=null;
+        try{
+            station=jsonObject.getJSONArray(Constants.TRAIN_ROUTE).getJSONObject(index).getJSONObject(Constants.STATION_TS);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return station;
+    }
+    public String getStationName(JSONObject station){
+        String name="";
+        try{
+            name=station.getString(Constants.STATION_CODE_NAME);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return name;
+    }
 }

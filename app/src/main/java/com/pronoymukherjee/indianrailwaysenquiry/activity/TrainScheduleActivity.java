@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class TrainScheduleActivity extends AppCompatActivity implements HTTPConnector.ResponseListener {
-    TextView trainName,trainNumber,trainDays,trainSource, trainDestination,emptyView;
+    TextView trainName,trainNumber,trainDays,trainSource, trainDestination,emptyView,arrow,trainDaysShow;
     ListView routeList;
     EditText trainNumberInput;
     ProgressBar progressBar;Button getStatus;
@@ -38,11 +38,17 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_schedule);
+        setTitle(getResources().getString(R.string.trainSchedule));
         initializeViews();
+        routeList.setEmptyView(emptyView);
+        arrow.setVisibility(View.GONE);
+        trainDaysShow.setVisibility(View.GONE);
         getStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!trainNumberInput.getText().toString().equals(""))
+                    routeList.setEmptyView(emptyView);
+                    arrow.setVisibility(View.GONE);
                     getTrainSchedule();
             }
         });
@@ -59,6 +65,8 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
         trainNumberInput=findViewById(R.id.trainNumberInput);
         progressBar=findViewById(R.id.progessBar);
         getStatus=findViewById(R.id.getStatus);
+        arrow=findViewById(R.id.arrow);
+        trainDaysShow=findViewById(R.id.trainDaysShow);
     }
 
     private void getTrainSchedule(){
@@ -111,15 +119,16 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
             return;
         }
         progressBar.setVisibility(View.GONE);
+        arrow.setVisibility(View.VISIBLE);
         trainNumber.setText(parser.getTrainNumber());
         trainName.setText(parser.getTrainName());
-        //TODO(1): Set data to views.
+        trainDaysShow.setVisibility(View.VISIBLE);
         setData(parser);
     }
 
     private void setData(JsonParser parser){
         JSONArray days=parser.getDays();
-        StringBuilder builder=new StringBuilder(trainDays.getText().toString());
+        StringBuilder builder=new StringBuilder();
         builder.append("\t");
         int l=days.length(),i;
         for(i=0;i<l;i++){
@@ -127,7 +136,7 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
                 try {
                     String status = days.getJSONObject(i).getString(Constants.TRAIN_DAYS_RUNS_TS);
                     if (status.equals("Y")) {
-                        builder.append(days.getJSONObject(i).getString(Constants.STATION_CODE));
+                        builder.append(days.getJSONObject(i).getString(Constants.STATION_CODE).substring(0,2));
                         builder.append("  ");
                     }
                 }
@@ -136,6 +145,7 @@ public class TrainScheduleActivity extends AppCompatActivity implements HTTPConn
                 }
             }
         }
+        trainDays.setText(builder.toString());
         JSONArray route=parser.getRoute();
         JSONObject station=parser.getStationTrainSchedule(0);
         String sourceStationName=parser.getStationName(station);
