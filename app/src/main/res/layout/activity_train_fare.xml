@@ -11,27 +11,15 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/fareActivity"
-                android:textColor="@color/blue"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="27sp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/sourceStation"
                 android:id="@+id/sourceStation"/>
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -42,19 +30,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-            <Spinner
+            <android.support.v7.widget.AppCompatSpinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/classFare"
                 android:spinnerMode="dropdown"/>
-            <Spinner
+            <android.support.v7.widget.AppCompatSpinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/quotaFare"
                 android:spinnerMode="dropdown"
                 android:layout_weight="1"/>
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ageFare"
@@ -66,14 +54,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="number"
                 android:id="@+id/trainNumberFare"
                 android:hint="@string/trainNumber"/>
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
@@ -87,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -105,7 +93,7 @@
                 android:textColor="@color/black"
                 android:text="@string/rsSymbol"
                 />
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.6"
@@ -189,7 +177,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

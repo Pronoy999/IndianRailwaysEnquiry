@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -45,7 +47,9 @@ public class TrainFareActivity extends AppCompatActivity implements HTTPConnecto
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_fare);
+        setTitle(getResources().getString(R.string.fareActivity));
         initializeViews();
+        numberOfPassenger.setText("1");
         Bundle bundle=getIntent().getExtras();
         if(bundle!=null) {
             if (!bundle.getString(Constants.TRAIN_NUMBER).equals("")) {
@@ -59,7 +63,7 @@ public class TrainFareActivity extends AppCompatActivity implements HTTPConnecto
                 calendar.set(Calendar.YEAR,year);
                 calendar.set(Calendar.MONTH,monthOfYear);
                 calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                updateLable();
+                updateLabel();
             }
         };
         journeyDate.setOnClickListener(new View.OnClickListener() {
@@ -85,9 +89,26 @@ public class TrainFareActivity extends AppCompatActivity implements HTTPConnecto
                 getFare();
             }
         });
+        numberOfPassenger.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.toString().equals("0")){
+                    numberOfPassenger.setText("1");
+                }
+                calculateFare();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
     }
 
-    private void updateLable(){
+    private void updateLabel(){
         String dateFormat="dd-MM-yyyy";
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat(dateFormat, Locale.US);
         journeyDate.setText(simpleDateFormat.format(calendar.getTime()));
@@ -222,17 +243,27 @@ public class TrainFareActivity extends AppCompatActivity implements HTTPConnecto
     @Override
     public void sendResponse(JSONObject responseObject) {
         JsonParser parser=new JsonParser(responseObject);
-        if(parser.isCorrectResponse()){
+        if(!parser.isCorrectResponse()){
             Messages.toastMessage(getApplicationContext(),Constants.ERROR_MESSAGE_INTERNET,"");
             return;
         }
         String fare=parser.getFare();
         if(!fare.equals("")){
             fareOne.setText(fare);
+            calculateFare();
         }
         else {
             Messages.toastMessage(getApplicationContext(),Constants.ERROR_MESSAGE_INTERNET,"");
         }
-        //TODO(1): Set the TextChangeListener.
+    }
+    private void calculateFare(){
+        double passengers=1,fare=0;
+        if(!numberOfPassenger.getText().toString().equals(""))
+            passengers = Double.parseDouble(numberOfPassenger.getText().toString());
+
+        if(!fareOne.getText().toString().equals(""))
+           fare = passengers * Double.parseDouble(fareOne.getText().toString());
+
+        totalFare.setText(String.valueOf(fare));
     }
 }

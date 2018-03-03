@@ -22,9 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PNRActivity" />
-        <activity android:name=".activity.TrainScheduleActivity" />
-        <activity android:name=".activity.TrainFareActivity" />
+        <activity android:name=".activity.PNRActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".activity.MainActivity"/>
+        <activity android:name=".activity.TrainScheduleActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activity.TrainFareActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".activity.MainActivity"/>
         <activity android:name=".activity.StationNameToCode"
             android:parentActivityName=".activity.MainActivity"
             android:windowSoftInputMode="adjustResize"/>

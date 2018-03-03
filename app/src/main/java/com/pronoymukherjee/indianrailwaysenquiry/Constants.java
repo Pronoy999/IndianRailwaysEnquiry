@@ -34,11 +34,15 @@ public class Constants {
     public static final String TRAIN_POSITION="position";
     public static final String TRAIN_ROUTE="route";
     public static final String TRAIN_DAYS="days";
+
+    public static final String TRAIN_DAYS_CODE_TS="code";
+    public static final String TRAIN_DAYS_RUNS_TS="runs";
     public static final String DAY_TS="day";
     public static final String DISTANCE_TS="distance";
-    public static final String STATION_ARRIVAL_TS="scharr";
-    public static final String STATION_DEPARTURE_TS="schdep";
+    public static final String SCHEDULE_ARRIVAL_TS ="scharr";
+    public static final String SCHEDULE_DEPARTURE_TS ="schdep";
     public static final String STATION_TS="station";
+    public static final String SCHEDULE_HALT="halt";
 
     public static final String PNR_JSON="pnr";
     public static final String DATE_OF_JOURNEY_PNR="doj";

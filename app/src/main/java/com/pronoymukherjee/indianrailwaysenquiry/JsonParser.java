@@ -163,52 +163,6 @@ public class JsonParser {
         }
         return classCode;
     }
-    public JSONArray getRoute()
-    {
-        JSONArray route=new JSONArray();String arrival,departure;
-        int halt,day;
-        try
-        {
-            route=jsonObject.getJSONArray(Constants.TRAIN_ROUTE);
-            for(int i=0;i<route.length();i++)
-            {
-                JSONObject routeObject=route.getJSONObject(i);
-                arrival=getArrivalTime(routeObject);
-                departure=getDepartureTime(routeObject);
-
-        }}
-        catch (JSONException e)
-        {
-            Messages.logMessage(TAG,e.toString());
-        }
-        return route;
-    }
-    public String getArrivalTime(JSONObject routeObject)
-    {String arrival="";
-        try
-        {
-            arrival=routeObject.getString(Constants.STATION_ARRIVAL_TS);
-
-        }
-        catch (JSONException e)
-        {
-            Messages.logMessage(TAG,e.toString());
-        }
-        return arrival;
-    }
-    public String getDepartureTime(JSONObject routeObject)
-    {String departure="";
-        try
-        {
-            departure=routeObject.getString(Constants.STATION_DEPARTURE_TS);
-
-        }
-        catch (JSONException e)
-        {
-            Messages.logMessage(TAG,e.toString());
-        }
-        return departure;
-    }
     public String[][] getStationCodes(){
         String stationNameCode[][]=null;
         try {
@@ -235,5 +189,116 @@ public class JsonParser {
             Messages.logMessage(TAG,e.toString());
         }
         return fare;
+    }
+    public JSONArray getRoute(){
+        JSONArray route=null;
+        try {
+            route=jsonObject.getJSONArray(Constants.TRAIN_ROUTE);
+        } catch (JSONException e) {
+            Messages.logMessage(TAG,e.toString());
+        }
+        return route;
+    }
+    public JSONObject getStation(int index){
+        JSONObject station=null;
+        try{
+            station=jsonObject.getJSONArray(Constants.STATION_TS).getJSONObject(index);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return station;
+    }
+    public JSONArray getDays(){
+        JSONArray days=null;
+        try{
+            days=jsonObject.getJSONObject(Constants.TRAIN).getJSONArray(Constants.TRAIN_DAYS);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return days;
+    }
+    public boolean isRunningOnDay(int index,JSONArray days){
+        try{
+            String doesRun=days.getJSONObject(index).getString(Constants.TRAIN_DAYS_RUNS_TS);
+            if(doesRun.equals("Y"))
+                return true;
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return false;
+    }
+    public String getScheduledArrival(int index,JSONArray route){
+        String schArrival="";
+        try{
+            JSONObject station=route.getJSONObject(index);
+            schArrival=station.getString(Constants.SCHEDULE_ARRIVAL_TS);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return schArrival;
+    }
+    public String getScheduleDeparture(int index,JSONArray route){
+        String schDept="";
+        try{
+            schDept=route.getJSONObject(index).getString(Constants.SCHEDULE_DEPARTURE_TS);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return schDept;
+    }
+    public String getScheduleDay(int index,JSONArray route){
+        String schDay="";
+        try{
+            schDay=route.getJSONObject(index).getString(Constants.DAY_TS);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return schDay;
+    }
+    public String getScheduleDistance(int index,JSONArray route){
+        String schDistance="";
+        try{
+            schDistance=route.getJSONObject(index).getString(Constants.DISTANCE_TS);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return schDistance;
+    }
+    public String getScheduleHalt(int index,JSONArray route){
+        String schHlt="";
+        try{
+            schHlt=route.getJSONObject(index).getString(Constants.SCHEDULE_HALT);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return schHlt;
+    }
+    public JSONObject getStationTrainSchedule(int index){
+        JSONObject station=null;
+        try{
+            station=jsonObject.getJSONArray(Constants.TRAIN_ROUTE).getJSONObject(index).getJSONObject(Constants.STATION_TS);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return station;
+    }
+    public String getStationName(JSONObject station){
+        String name="";
+        try{
+            name=station.getString(Constants.STATION_CODE_NAME);
+        }
+        catch (JSONException e){
+            Messages.logMessage(TAG,e.toString());
+        }
+        return name;
     }
 }

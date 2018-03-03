@@ -28,4 +28,9 @@
     <string name="numberOfPerson">Number of Person(s):</string>
     <string name="totalFare">Total Fare:</string>
     <string name="rsSymbol">\u20B9</string>
+    <string name="arrowSymbol">-></string>
+    <string name="km">Kms</string>
+    <string name="hlt_mins">min(s)</string>
+    <string name="day_show">day(s)</string>
+    <string name="daysOfRunning">Days of Running: </string>
 </resources>
